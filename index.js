@@ -56,7 +56,8 @@ function greeting() {
 const greeting2 = () => "Hey there again!";
 console.log(greeting2());
 
-// We will create a regular diameter function and an arrow diameter function
+// In order to see the impact of arrow function on <this> keyword
+// we will create a regular diameter function and an arrow diameter function
 // and see that the arrow function return NaN (not a number) and it's because
 // this.radius doesn't refer to the radius on the shape object but on the
 // current scoped where we call it.
@@ -99,3 +100,5 @@ const hero2 = {
   },
 };
 console.log(hero2.greet());
+
+// Remember Arrow functions are bound to their context !!!
