@@ -50,3 +50,47 @@ console.log("addListItem(): ", addListItem("apple"));
 // *************************************************************************
 // Learn what the Rest and Spread operators are in ES6
 //  *************************************************************************
+
+// What if we want to sum up values, but we are not sure how many there will be.
+// This were the rest operator takes place. in the example we have to parameters (min)
+//  and we use ...values to dynamically adjust the number of values, for when we call the function
+// We set a sum variable with default parameter a + b
+// we iterates over the array values created by the rest operator and we calculate the sum with
+// each value, finally we return the sum. Now we can start the sum with 2min parameters and
+// and many more, it will adjust accordingly to the amount of parameters will set when we call the function.
+
+function sum(a, b, ...values) {
+  let sum = a + b;
+  values.forEach((value) => (sum += value));
+  return sum;
+}
+console.log("sumWithRest(): ", sum(2, 5, 2, 3));
+
+// ES6 also provide the spread operator
+
+const user = { name: "John Doe" };
+const cart = {
+  items: [
+    { name: "shirt", quantity: 1 },
+    { name: "trousers", quantity: 2 },
+  ],
+};
+const deliveryAddress = {
+  street: "100 main street",
+  city: "Miami",
+  state: "FL",
+};
+
+// We can use the spread operator to build an object made of all the other newly created object
+
+const purchase = {
+  ...user,
+  ...cart,
+  ...deliveryAddress,
+};
+
+console.log("purchase(): ", purchase);
+
+// *************************************************************************
+// How to destructure Arrays and Objects in JavaScript ES6
+//  *************************************************************************
