@@ -25,23 +25,23 @@ checkPassword("123456");
 
 //  There is a short version of a function declaration that comes with ES6
 function getInfo(name, age) {
-  return ` getInfo1: Name: ${name} - Age: ${age}`;
+  return `getInfo1(): Name: ${name} - Age: ${age}`;
 }
 console.log(getInfo("Lydia", 21));
 
 // we start with a variable and let's pause and set some examples
 const getInfo2 = (name, age) => {
-  return ` getInfo2: Name: ${name} - Age: ${age}`;
+  return `getInfo2(): Name: ${name} - Age: ${age}`;
 };
 console.log(getInfo2("Lydia", 21));
 
 //  in this first function, there is just one line of code that must be applied
 // So we can short by suppressing the return and the curly brackets
-const getInfo3 = (name, age) => `getInfo3: Name: ${name} - Age: ${age}`;
+const getInfo3 = (name, age) => `getInfo3(): Name: ${name} - Age: ${age}`;
 console.log(getInfo3("Lydia", 21));
 
 // If we had only one parameter we can even short the function
-const getInfo4 = (name) => `getInfo4: Name: ${name}`;
+const getInfo4 = (name) => `getInfo4(): Name: ${name}`;
 console.log(getInfo4("Lydia"));
 
 // Another example where you can see that arrow function doesn't allow to call
@@ -52,10 +52,10 @@ console.log(getInfo4("Lydia"));
 
 console.log(greeting());
 function greeting() {
-  return "greeting: Hey there!";
+  return "greeting(): Hey there!";
 }
 
-const greeting2 = () => "greeting: Hey there again!";
+const greeting2 = () => "greeting(): Hey there again!";
 console.log(greeting2());
 
 // Arrow function have an impact on <this> keyword
@@ -72,8 +72,8 @@ const shape = {
   diameter2: () => this.radius * 2,
 };
 
-console.log("shape: " + shape.diameter());
-console.log("shape: " + shape.diameter2());
+console.log("shape(): " + shape.diameter());
+console.log("shape(): " + shape.diameter2());
 
 // Another example where you can see that the bind method allow JS to know what
 // is < this >, if we remove the bind, name will be undefined because the
@@ -81,30 +81,30 @@ console.log("shape: " + shape.diameter2());
 // With arrow functions that are bound on the object, there is no problem to call.name
 //  Let's see this with hero2. The greeting method is called on the hero object.
 //  Js knows that this.name refers to the name of the hero object because they live in the same scope
+// Remember Arrow functions are bound to their context!!!
+
 const hero = {
   name: "Super Man",
   greet: function () {
     setTimeout(
       function () {
-        console.log("Hi, my name is", this.name);
+        console.log("hero.greet(): Hi, my name is " + this.name);
       }.bind(this),
       1000
     );
   },
 };
-console.log("hero.greet" + hero.greet());
+console.log(hero.greet());
 
 const hero2 = {
   name: "Super Man",
   greet: function () {
     setTimeout(() => {
-      console.log("Hi, my name is", this.name);
+      console.log("hero.greet2(): Hi, my name is", this.name);
     }, 1000);
   },
 };
-console.log("hero.greet" + hero2.greet());
-
-// Remember Arrow functions are bound to their context!!!
+console.log(hero2.greet());
 
 // *************************************************************************
 // Let's practice some template literals
@@ -112,16 +112,38 @@ console.log("hero.greet" + hero2.greet());
 
 // ES6 introduce template literals first let's see a simple translation
 
-console.log("ES6 literals");
-
 function sayHi(name) {
-  return "Hello there, " + name;
+  return "sayHi(): Hello there, " + name;
 }
-console.log(sayHi("sayHi: Lydia"));
+console.log(sayHi("Lydia"));
 
 //  First when using template literals, we use back ticks
 function sayHi2(name) {
-  return `Hello there, ` + name;
+  return `sayHi2(): Hello there, ` + name;
 }
 
-console.log(sayHi2("sayHi2: Lydia"));
+console.log(sayHi2("Lydia"));
+
+// With template literals you can suppress the + operator and embed the interpolation
+//  inside the string
+
+function sayHi3(name) {
+  return `sayHi3(): Hello there, ${name}`;
+}
+console.log(sayHi3("Lydia"));
+
+// In the previous case the expression was a passed argument <name> but expressions
+// can be anything, by introducing a baseUrl const, you can interpolate the url from the API
+// and avoir repetition and typos
+
+const fetch = require("node-fetch"); // required for the fetch
+
+const baseUrl = "https://swapi.dev/api"; // the url that drives us to the API endpoint
+
+fetch("https://swapi.dev/api/people/1")
+  .then((res) => res.json())
+  .then((json) => console.log("simpleFetch(): ", json));
+
+fetch(`${baseUrl}/people/2`)
+  .then((res) => res.json())
+  .then((json) => console.log("fetchWithBaseUrl(): ", json));
