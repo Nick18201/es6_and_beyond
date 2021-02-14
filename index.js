@@ -275,10 +275,3 @@ const person4 = {
 };
 
 console.log("person4(): ", person4);
-// *************************************************************************
-// Learn how to set default parameter values in JavaScript functions
-//  *************************************************************************
-// Prior to ES6, it wasn't possible to set default parameter values when defining
-// our functions in JavaScript.In this lesson, we learn how to create default values
-// to our function parameters.We also see a few examples of how this can come in
-// handy in our applications.
