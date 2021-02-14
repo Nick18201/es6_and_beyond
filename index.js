@@ -171,6 +171,114 @@ const greet = (greeting, name, age) => {
 const name = "Lydia";
 const age = 21;
 
-greet`My name is ${name} and i am ${age}`;
+greet`greet(): My name is ${name} and i am ${age}`;
 
 // interpolation can be used with CSS, the example can be found in index.html
+
+// *************************************************************************
+// Let's practice some new syntax with objects
+//  *************************************************************************
+// ES6 introduced new features and syntaxes for Objects. In this lesson, we will
+// learn how to omit to explicitly define the key for properties and functions in
+// certain circumstances.We'll also learn how to create computed properties, also
+// known as dynamic properties.
+
+function createPerson(name, age, admin) {
+  return {
+    name: name,
+    age: age,
+    isAdmin: admin,
+  };
+}
+console.log("createPerson(): ", createPerson("Lydia", 21, false));
+console.log("createPerson(): ", createPerson("John", 23, true));
+
+// ES6 allow to shorten the syntax for name and age because the key is the same as
+// the attributes, for is admin, we must specify the key because it's d
+
+function createPerson2(name, age, admin) {
+  return {
+    name,
+    age,
+    isAdmin: admin,
+  };
+}
+console.log("createPerson2(): ", createPerson2("Lydia", 21, false));
+console.log("createPerson2(): ", createPerson2("John", 23, true));
+
+// You can have computed properties, you can pass variables as properties to objects
+// const specialProperty can be added as a key value to person object.
+// Computed Property Names is an ES6 feature which allows the names of object
+// properties in JavaScript object literal notation to be determined dynamically, i.e.computed.
+// The example shows computed property name : the key "nationality" introduced in the const SpecialProperty
+// and it's value is introduced by giving a value to person[specialProperty] with "German"
+const specialProperty = "nationality";
+
+const person = {
+  name: "John",
+  age: 22,
+  isAdmin: false,
+};
+
+person[specialProperty] = "German";
+console.log("specialProperty(): ", person);
+
+//  In ES6 it can be shorten by using brackets
+const specialProperty2 = "nationality";
+
+const person2 = {
+  name: "John",
+  age: 22,
+  isAdmin: false,
+  [specialProperty2]: "German",
+};
+
+console.log("specialProperty2(): ", person2);
+
+//  It can become useful when the property name changes
+
+function makeObject(key, value) {
+  return { [key]: value };
+}
+
+const user = makeObject("username", "John");
+const dog = makeObject("breed", "Labrador");
+
+console.log("makeObject():", user);
+console.log("makeObject():", dog);
+
+//  If computed property is a function inside an object without the need of writing function
+
+const person3 = {
+  firstName: "John",
+  lastName: "Doe",
+  getFullName() {
+    return `${this.firstName} ${this.lastName}`;
+  },
+};
+
+console.log("person3(): ", person3.getFullName());
+
+// Other example
+
+const specialProperty3 = "nationality";
+const firstName2 = "John";
+const lastName2 = "Doe";
+
+const person4 = {
+  firstName2,
+  lastName2,
+  getFullName2() {
+    return `${this.firstName2} ${this.lastName2}`;
+  },
+  [specialProperty3]: "German",
+};
+
+console.log("person4(): ", person4);
+// *************************************************************************
+// Learn how to set default parameter values in JavaScript functions
+//  *************************************************************************
+// Prior to ES6, it wasn't possible to set default parameter values when defining
+// our functions in JavaScript.In this lesson, we learn how to create default values
+// to our function parameters.We also see a few examples of how this can come in
+// handy in our applications.
