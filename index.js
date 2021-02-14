@@ -147,3 +147,30 @@ fetch("https://swapi.dev/api/people/1")
 fetch(`${baseUrl}/people/2`)
   .then((res) => res.json())
   .then((json) => console.log("fetchWithBaseUrl(): ", json));
+
+// Expressions can also return value from a function :
+const sum = (a, b) => `sum(): ${a + b}`;
+console.log(sum(1, 3));
+
+// Template literals also allow multiline strings, before you had to use escape character
+const result = "Sarah: 1\nPeter: 2";
+console.log("result(): ", result);
+// We can just keep on writing in our code with literals
+const result2 = `
+Sarah: 1
+Peter: 2`;
+console.log("result2(): ", result2);
+
+// You can parse literals with a function
+const greet = (greeting, name, age) => {
+  console.log(greeting);
+  console.log(name);
+  console.log(age);
+};
+
+const name = "Lydia";
+const age = 21;
+
+greet`My name is ${name} and i am ${age}`;
+
+// interpolation can be used with CSS, the example can be found in index.html
