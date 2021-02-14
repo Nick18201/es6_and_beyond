@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Document</title>
+</head>
+<body>
+<h1>Hello</h1>
+<input id ="input_box"></input>
+<div id="box"></div>
+<script>
+  // this script allows use to see interpolation for css modification with JS
+  // First we select the box and the input and we play with the size of the box
+  // we the input is listened to, it triggers handleUpdate method to change the size of the box
+  // we use parseInt since it's a string and we need an integer to multiply
+  const box = document.getElementById("box");
+    box.style.backgroundColor = "purple";
+
+  const input = document.getElementById("input_box");
+    input.addEventListener("change", handleUpdate);
+
+  function handleUpdate(e) {
+    box.style.height = `${parseInt(e.target.value) * 2}px`;
+    box.style.width = `${parseInt(e.target.value) * 2}px`;
+  }
+</script>
+</body>
+</html>
