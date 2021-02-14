@@ -46,7 +46,9 @@ console.log(getInfo4("Lydia"));
 
 // Another example where you can see that arrow function doesn't allow to call
 //  before it is initialize, like const and let variable are not defined by
-// default. With regular function you can call them before.
+// default so they cannot be referenced before being declared. With regular
+// function you can call them before because they are
+// already loaded in the computer's memory
 
 console.log(greeting());
 function greeting() {
@@ -56,7 +58,7 @@ function greeting() {
 const greeting2 = () => "Hey there again!";
 console.log(greeting2());
 
-// In order to see the impact of arrow function on <this> keyword
+// Arrow function have an impact on <this> keyword
 // we will create a regular diameter function and an arrow diameter function
 // and see that the arrow function return NaN (not a number) and it's because
 // this.radius doesn't refer to the radius on the shape object but on the
@@ -75,9 +77,10 @@ console.log(shape.diameter2());
 
 // Another example where you can see that the bind method allow JS to know what
 // is < this >, if we remove the bind, name will be undefined because the
-// setTimeOut function doesn't have name property.
+// setTimeOut function doesn't have <name> property.
 // With arrow functions that are bound on the object, there is no problem to call.name
-//  Let's see this with hero2
+//  Let's see this with hero2. The greeting method is called on the hero object.
+//  Js knows that this.name refers to the name of the hero object because they live in the same scope
 const hero = {
   name: "Super Man",
   greet: function () {
@@ -101,4 +104,8 @@ const hero2 = {
 };
 console.log(hero2.greet());
 
-// Remember Arrow functions are bound to their context !!!
+// Remember Arrow functions are bound to their context!!!
+
+// *************************************************************************
+// Let's practice some template literals
+//  *************************************************************************
