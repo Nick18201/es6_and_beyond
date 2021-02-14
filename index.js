@@ -9,10 +9,10 @@ function checkPassword(password) {
 
   if (valid) {
     const message = "Your password is valid";
-    console.log(message);
+    console.log("checkPassword : " + message);
   } else {
     const message = "Your password is not valid";
-    console.log(message);
+    console.log("checkPassword : " + message);
   }
 }
 
@@ -25,23 +25,23 @@ checkPassword("123456");
 
 //  There is a short version of a function declaration that comes with ES6
 function getInfo(name, age) {
-  return `Name: ${name} - Age: ${age}`;
+  return ` getInfo1: Name: ${name} - Age: ${age}`;
 }
 console.log(getInfo("Lydia", 21));
 
 // we start with a variable and let's pause and set some examples
 const getInfo2 = (name, age) => {
-  return `Name: ${name} - Age: ${age}`;
+  return ` getInfo2: Name: ${name} - Age: ${age}`;
 };
 console.log(getInfo2("Lydia", 21));
 
 //  in this first function, there is just one line of code that must be applied
 // So we can short by suppressing the return and the curly brackets
-const getInfo3 = (name, age) => `Name: ${name} - Age: ${age}`;
+const getInfo3 = (name, age) => `getInfo3: Name: ${name} - Age: ${age}`;
 console.log(getInfo3("Lydia", 21));
 
 // If we had only one parameter we can even short the function
-const getInfo4 = (name) => `Name: ${name}`;
+const getInfo4 = (name) => `getInfo4: Name: ${name}`;
 console.log(getInfo4("Lydia"));
 
 // Another example where you can see that arrow function doesn't allow to call
@@ -52,10 +52,10 @@ console.log(getInfo4("Lydia"));
 
 console.log(greeting());
 function greeting() {
-  return "Hey there!";
+  return "greeting: Hey there!";
 }
 
-const greeting2 = () => "Hey there again!";
+const greeting2 = () => "greeting: Hey there again!";
 console.log(greeting2());
 
 // Arrow function have an impact on <this> keyword
@@ -72,8 +72,8 @@ const shape = {
   diameter2: () => this.radius * 2,
 };
 
-console.log(shape.diameter());
-console.log(shape.diameter2());
+console.log("shape: " + shape.diameter());
+console.log("shape: " + shape.diameter2());
 
 // Another example where you can see that the bind method allow JS to know what
 // is < this >, if we remove the bind, name will be undefined because the
@@ -92,7 +92,7 @@ const hero = {
     );
   },
 };
-console.log(hero.greet());
+console.log("hero.greet" + hero.greet());
 
 const hero2 = {
   name: "Super Man",
@@ -102,10 +102,26 @@ const hero2 = {
     }, 1000);
   },
 };
-console.log(hero2.greet());
+console.log("hero.greet" + hero2.greet());
 
 // Remember Arrow functions are bound to their context!!!
 
 // *************************************************************************
 // Let's practice some template literals
 //  *************************************************************************
+
+// ES6 introduce template literals first let's see a simple translation
+
+console.log("ES6 literals");
+
+function sayHi(name) {
+  return "Hello there, " + name;
+}
+console.log(sayHi("sayHi: Lydia"));
+
+//  First when using template literals, we use back ticks
+function sayHi2(name) {
+  return `Hello there, ` + name;
+}
+
+console.log(sayHi2("sayHi2: Lydia"));
